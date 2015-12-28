@@ -1,0 +1,11 @@
+#summary The Main page of the Eye Sky High Project Wiki
+
+== WIKI Sections ==
+
+Here are the most important pages of the project's wiki:
+ * [ProjectDescription Project description and scope]
+ * [ProjectPlan Project Plan]
+ * [ProjectArchitecture Project Architecture]
+ * [Technologies Project Technologies overview]
+ * [Benchmarks]
+ * [Team Project Team]

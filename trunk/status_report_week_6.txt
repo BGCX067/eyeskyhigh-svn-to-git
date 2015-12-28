@@ -1,0 +1,10 @@
+Pana in acest moment deadline-urile prezentate pe pagina de Wiki a proiectului sunt respectate in totalitate.
+Intrucat echipa acestui proiect este formata dintr-un singur membru, implicarea este, evident, urmatoarea:
+ Andrei Serea - 100 %
+Principalul semn de intrebare ce exista la inceputul proiectului este posibilitatea de a integra Apache Lucene
+cu API-ul creat special pentru aceasta aplicatie.
+Fiind insa vorba de un proiect Apache, el este foarte bine documentat si vine cu exemple foarte utile
+care au usurat enorm munca de integrare. Practic, din acest moment nu mai exista semne de intrebare asupra
+reusitei, ci doar asupra performantelor.
+Este evident, daca modulul de paralelizare a taskurilor de search/index/hash nu este destul de performant
+atunci intreaga aplicatie va suferi iar utilitatea ei va fi pusa sub semnul intrebarii.

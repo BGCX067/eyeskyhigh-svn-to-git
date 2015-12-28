@@ -1,0 +1,19 @@
+#summary The current status of the project's development process
+
+== Week 7 ==
+
+*Activity Report*:
+ * Interface Apache’s Lucene search engine *90%*
+  * Create search engine class that wraps around Lucene. *DONE*
+  * Create internal search result *DONE*
+  * Adapt internal search result to the one presented in module 1. *60%*
+ * Integrate the hashing engine *40%* 
+  * Implement the SHA1 algorithm (or use an existing open-source one) *DONE*
+  * Create hash engine class that uses the SHA1 algorithm *NOT DONE*
+
+== Week 8 ==
+
+*Activity Report*:
+ * Search Engine - 10% 
+
+*Notes: Should recover the lost time due to medical leave in the following 2 weeks*

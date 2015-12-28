@@ -1,0 +1,132 @@
+#summary The project's development stages and time-line.
+
+== Introduction ==
+
+This document lays out the plan that will be followed while developing this project's modules.
+Since the project's development stages are strictly related to its architecture, please read the wiki page on [ProjectArchitecture architecture] first.
+
+
+== Details ==
+
+The starting date is November 6th 2008.
+There are 7 stages in the development process of EyeSkyHigh, one for each existing module and just a single additional one that will deal with the API.
+
+These stages are the following:
+ #. Core API Implementation.
+ #. Interface Apache’s Lucene search engine.
+ #. Integrate the hashing engine.
+ #. Search Engine
+ #. Workstation data exchange module.
+ #. Parallelism Module.
+ #. User Interface Module.
+
+The implementation process will complete the stages in the order presented above.
+
+Next, each stage will be presented in detail, giving information such as functions that it must cover, duration, dependencies on functions implemented during other stages, input and output.
+
+Some general notions have to be introduced first in order to fully understand the functions of the stages.
+
+*Global notions*:
+	_Search task_: standard file search;
+
+	_Indexing task_: a set of local resources to be indexed;
+
+	_Hashing task_: a set of local resources to be hashed;
+
+	_File content comparison task_:  Decide if two files are identical or not (based on their hash value);
+
+1. *Core API Implementation*
+
+ _Description_:Design and implement a flexible representation of the following notions: search task, indexing task, hashing task, file content comparison task;
+
+ _Duration_: 4 days
+
+ _Period_: 6.11.2008 - 9.11.2008
+
+ _Dependencies_: None;
+
+ _Input/Output_: None.
+
+2. *Interface Apache’s Lucene search engine*
+
+ _Description_: Adapt Lucene to the tasks format described by the Core API Implementation.
+
+ _Duration_: 4 days
+
+ _Period_: 10.11.2008 - 13.11.2008
+
+ _Dependencies_: Core API Implementation;
+
+ _Input_: search/indexing task;
+
+ _Output_: The result of the search or the output of the requested indexing process.
+
+3. *Integrate the hashing engine*
+
+ _Description_: Accept tasks in the format described by the Core API Implementation and serve them (calculate the digest for the requested files or compare file contents to decide on their equality);
+
+ _Duration_: 4 days
+
+ _Period_: 14.11.2008 - 17.11.2008
+
+ _Dependencies_: Core API Implementation
+
+ _Input_: Hash indexing task or file content comparison task.
+
+ _Output_:  Digests for the given input files for hash indexing task or results of the file content comparison.
+
+4. *Search Engine*
+
+ _Description_: Integrates the features offered in the previous two stages into one single interface that the user interface will use to respond to the user’s requests.
+
+ _Duration_: 4 days
+
+ _Period_: 18.11.2008 - 21.11.2008
+
+ _Dependencies_: Core API Implementation, Interface Lucene, Hash Engine, Workstation Data Exchange Module;
+
+ _Input_: Search task, indexing task or hashing task.
+
+ _Output_: Search result or report on the indexing/hashing job progress.
+
+5. *Workstation data exchange module*
+
+ _Description_: Ensure communication between multiple workstations necessary for exchanging search results or request indexing/hashing actions.
+
+ _Duration_: 14 days
+
+ _Period_: 22.11.2008 - 5.12.2008
+
+ _Dependencies_: Core API Implementation;
+
+ _Input_: Any kind of task described by the Core API along with the destination workstation.
+
+ _Output_: Received tasks (from other workstations) or information on the success of the transmission.
+
+6. *Parallelism Module*
+
+ _Description_: Receives a list of locations on the LAN from the Search Engine and distributes the indexing/hashing actions between active workstations.
+
+ _Duration_: 11 days
+
+ _Period_: 6.11.2008 - 16.11.2008
+
+ _Dependencies_: Core API Implementation, Interface Lucene, Hash Engine, Workstation Data Exchange Module;
+
+ _Input_: Set of locations on LAN to be indexed/hashed;
+
+ _Output_: Announce when indexing/hashing job is finished.
+
+7. *User Interface Module*
+
+ _Description_: Offer a GUI through which the user can search a location (local or LAN), request a local resource to be indexed/hashed or delete any existing indexing/hashing information on that resource, configure access to the workstation’s processor for heavily consuming processes such as indexing or hashing.
+
+ _Duration_: 14 days
+
+ _Period_: 17.11.2008 - 9.1.2008
+
+ _Dependencies_: Core API Implementation, Search Engine;
+
+ _Input_: Commands from the user;
+
+ _Output_: Tasks to be resolved by the Search Engine.

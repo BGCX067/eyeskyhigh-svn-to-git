@@ -1,0 +1,14 @@
+#summary This Code Conventions document contains the standard conventions used to write the code for this project. It covers filenames, file organization, indentation, comments, declarations, statements, white space, naming conventions, programming practices and includes a code example.
+
+== Why have code conventions? ==
+
+Code conventions are important to programmers for a number of reasons:
+ * 80% of the lifetime cost of a piece of software goes to maintenance.
+ * Hardly any software is maintained for its whole life by the original author.
+ * Code conventions improve the readability of the software, allowing engineers to understand new code more quickly and thoroughly.
+
+== Details ==
+
+Since EyeSkyHigh is a Java project, the entire code is written using Sun's Code Conventions for the Java Programming Language. 
+These are described [http://java.sun.com/docs/codeconv/html/CodeConvTOC.doc.html here]
+There are no exceptions and no add-ons to it currently available.

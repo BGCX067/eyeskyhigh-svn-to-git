@@ -1,0 +1,19 @@
+#summary Why was this project started and what is its scope?
+
+== Introduction ==
+
+It is well known that a standard file search (using a regular expression to match the file/directory name/path) in any operating system can take several minutes or more, depending on the regular expression used and the space searched. 
+The time required grows substantially when the search is done over an entire file server that typically has several terabytes of storage or, even worse, over the entire file 
+sharing system of a LAN.
+
+== Description ==
+
+We propose an extended version of the indexed search that WindowsXP (Windows Desktop Search) includes in SP3."Extended" means that the search engine will use, besides indexing, file digests based on the SHA-1 algorithm for determining duplicate files and also will permit searching over LAN by balancing the indexing and hashing work between active workstations.
+
+== Objectives ==
+
+The solution's objective are:
+ #. Fast searching in any location within the local machine’s data storage unit;
+ #. Fast searching in any location accessible within the LAN of the current workstation;
+ #. Parameterized access to CPU for the indexing and hashing process (based on priority rules);
+ #. Ability to report duplicates in any search done.

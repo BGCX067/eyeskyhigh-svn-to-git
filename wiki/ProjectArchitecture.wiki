@@ -1,0 +1,55 @@
+#summary The modules that form the application and the inter-module communication.
+
+== Project's features ==
+
+The project consists of an application that is completely user-space and will have two parts: an user interface to facilitate the search and a background process that will compute the digests for every file on the current machine and run the indexing process.
+Since the application's modules depend on its features, lets go over them here and determine what kind of functions will have to be implemented in order to offer these features.
+
+As presented in the [ProjectDescription project description wiki page], the application's objectives are:
+
+ #. Fast searching in any location within the local machine’s data storage unit;
+ #. Fast searching in any location accessible within the LAN of the current workstation;
+ #. Parameterized access to CPU for the indexing and hashing process (based on priority rules);
+ #. Ability to report duplicates in any search done.
+
+The first feature is the one that the indexed search from WindowsXP covers so we won’t get into details. The other 3 however are somewhat new.
+
+The second feature implies the following:
+
+ * Access to file sharing mechanism;
+ * Communication between the background processes running on 2 different machines (to exchange the required search information);
+ * Distributed digests computing and indexing of the shared resources available on the LAN that reside on machines which do not have the application installed. In this case the indexing and digests will be done by other machines on the LAN that do have the application installed. The workload will be balanced between them. A workstation may refuse to participate in such actions (when a search on the LAN has not been requested by itself);
+
+The third feature must permit the user to limit the access of the background process to system resources. This is extremely important since this process is very expensive when it comes to CPU and memory requirements.
+
+The last feature is a result of the hashing action. Because of this, the application is able to easily detect duplicate files, a very useful option when carrying out a search over an entire LAN.
+
+We can now split the application's features in 5 more abstract functions.
+
+== Project's functions ==
+
+ #. Index and create digests for files on the running workstation;
+ #. Answer to search queries on the running workstation;
+ #. Accept to index and create digests for files accessible on the LAN that reside on workstations which do not have the solution installed;
+ #. Answer to search queries on other workstations (different from the one it runs on).
+ #. Balance the work from 3 between active workstations. An active workstation has the solution installed.
+
+== Project's modules ==
+
+Given the functions presented above, we can split them into six modules, each handling a specific part:
+
+ #. *User Interface Module*:  gives the user the support to: send a query to the search engine, configure the database of the indexing and hashing engines (can add/remove new folders/files to the list of monitored locations), control the access to the workstation’s physical resources (processor, memory)
+ #. *Search Engine Module*: receives new queries from the user interface which it passes on to the two engines (indexing and hashing) and finally constructs the response which it will send back to the user interface to be displayed.
+ #. *Indexing Engine Module*: performs the indexing calculus on the resources (files/folders) selected by the user through the user interface) or requested by other workstations which it is connected to.
+ #. *Indexing Engine Module*: performs the hashing calculus on the resources (files/folders) selected by the user through the user interface) or requested by other workstations which it is connected to.
+ #. *Parallelism Module*: receives hashing and indexing requests for remote locations from other workstations and negotiates with these ones the distribution of workload.
+ #. *Workstation Data Exchange Module*: facilitates the communication with other workstations, making possible for the application to:
+  * respond to search queries made by other workstations involving local resources;
+  * participate in indexing/hashing locations on workstations that do not have the app installed.
+
+There is one last item to discuss when it comes to the project's architecture, the way that the modules communicate with each other.
+
+== Modules interaction ==
+
+The below picture is an UML diagram that describes the relations between the application's modules.
+http://eyeskyhigh.googlecode.com/files/module.jpg

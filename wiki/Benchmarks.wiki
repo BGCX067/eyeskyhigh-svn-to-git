@@ -1,0 +1,48 @@
+#summary How to test and analyze the performance and output.
+
+== Introduction ==
+----
+From a testing point of view, the application offers 2 features:
+ # Search for a file on the local hard drive
+ # Search for a file on the LAN
+
+For each one of these two situations a special method to test the performance and results has to be developed. For the first feature, what we need to test are parameters such as CPU loading/RAM usage (during search/indexing/hashing), total number of bytes of files indexed/hashed, etc., while for the second feature we need to make sure that the work-load is equally balanced between active workstations.
+An active workstation is one that has the application installed and its process running and that participates to indexing/hashing remote locations on the local area network.
+Similarly, an inactive workstation is one that does not have the application installed. Therefore, any search that includes locations on this workspace must be handled by other workstations that are active.
+
+It should be clear now that for testing the second feature all that it is necessary is to compare the results of the first feature for each and every active workstation. If the work was distributed equally among them, these reports will show the same figures.
+
+== Details ==
+----
+===Benchmark Variables===
+*Hardware Environment*
+ * _Dedicated machine for indexing_: Self-explanatory (yes/no)
+ * _CPU_: Self-explanatory (Type, Speed and Quantity)
+ * _RAM_: Self-explanatory
+ * _Drive configuration_: Self-explanatory (IDE, SCSI, RAID-1, RAID-5)
+ * _Number of active workstations_: Self-explanatory
+*Software environment*
+ * _Lucene Version_: Self-explanatory
+ * _Java Version_: Version of Java SDK/JRE that is run
+ * _Java VM_: Server/client VM, Sun VM/JRockIt
+ * _OS Version_: Self-explanatory
+ * _Location of index_: Is the index stored in filesystem or database? Is it on the same server(local) or over the network?
+*Search engine variables*
+ * _Number of source documents_: Number of documents being indexed
+ * _Total filesize of source documents_: Self-explanatory
+ * _Average filesize of source documents_: Self-explanatory
+ * _Source documents storage location_: Where are the documents being indexed located? Filesystem, DB, http, etc.
+ * _File type of source documents_: Types of files being indexed, e.g. HTML files, XML files, PDF files, etc.
+ * _Parser(s) used, if any_: Parsers used for parsing the various files for indexing, e.g. XML parser, HTML parser, etc.
+ * _Analyzer(s) used_: Type of Lucene analyzer used
+ * _Number of fields per document_: Number of Fields each Document contains
+ * _Type of fields_: Type of each field
+ * _Index persistence_: Where the index is stored, e.g. FSDirectory, SqlDirectory, etc.
+*Figures*
+ * _Indexing time (in ms/s as an average of at least 3 indexing runs)_: Time taken to index all files
+ * _Time taken / 1000 docs indexed_: Time taken to index 1000 files
+ * _Hashing time (in ms/s as an average of at least 3 hashing runs)_: Time taken to hash all files
+ * _Time taken / 1000 files hashed_: Time taken to hash 1000 files
+ * _Memory consumption_: Self-explanatory
+ * _Query speed_: average time a query takes, type of queries (e.g. simple one-term query, phrase query), not measuring any overhead outside Lucene and Hash Engine
+ * _Total Query speed_: same as _Query speed_ plus the overhead introduced by communication with other active workstations (in case of lan searches)

@@ -1,0 +1,47 @@
+#summary Programming language, technologies and frameworks used.
+
+== Introduction ==
+----
+
+EyeSkyHigh is a project that requires a powerful and stable indexed search engine. There are a lot of open-source projects that do just that but, from all the existing ones, Apache's Lucene is the most stable and fast of all.
+Lucene was first developed using the Java programming language and, although many parallel projects regarding porting Lucene to other programming languages such as C# have started, its most stable version remains the one written in Java.
+Therefore, EyeSkyHigh will use this version, being therefore constrained to using Java for the entire project.
+
+
+== Java Programming Language ==
+----
+
+Java is a programming language originally developed by Sun Microsystems and released in 1995 as a core component of Sun Microsystems' Java platform. The language derives much of its syntax from C and C++ but has a simpler object model and fewer low-level facilities. Java applications are typically compiled to bytecode that can run on any Java virtual machine (JVM) regardless of computer architecture.
+
+For more information, please refer to the [http://java.sun.com/ Java Homepage].
+
+
+== Apache Lucene ==
+----
+
+Apache Lucene is a high-performance, full-featured text search engine library written entirely in Java. It is a technology suitable for nearly any application that requires full-text search, especially cross-platform.
+
+Lucene offers powerful features through a simple API:
+
+===Scalable, High-Performance Indexing===
+
+ * over 20MB/minute on Pentium M 1.5GHz
+ * small RAM requirements -- only 1MB heap
+ * incremental indexing as fast as batch indexing
+ * index size roughly 20-30% the size of text indexed
+
+===Powerful, Accurate and Efficient Search Algorithms===
+
+ * ranked searching -- best results returned first
+ * many powerful query types: phrase queries, wildcard queries, proximity queries, range    queries and more
+ * fielded searching (e.g., title, author, contents)
+ * date-range searching
+ * sorting by any field
+ * multiple-index searching with merged results
+ * allows simultaneous update and searching
+
+===Cross-Platform Solution===
+
+ * Available as Open Source software under the Apache License which lets you use Lucene in both commercial and Open Source programs
+ * 100%-pure Java
+ * Implementations in other programming languages available that are index-compatible
